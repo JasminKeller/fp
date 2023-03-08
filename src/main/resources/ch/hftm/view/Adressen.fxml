@@ -16,7 +16,7 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="480.0" prefWidth="764.0" VBox.vgrow="ALWAYS">
          <children>
-            <ListView fx:id="AdressListView" layoutX="571.0" layoutY="96.0" prefHeight="398.0" prefWidth="382.0" />
+            <ListView fx:id="adressListView" layoutX="571.0" layoutY="96.0" prefHeight="398.0" prefWidth="382.0" />
             <VBox layoutX="147.0" layoutY="96.0" prefHeight="112.0" prefWidth="390.0">
                <children>
                   <GridPane>
