@@ -1,14 +1,19 @@
 package ch.hftm.fp.location;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import ch.hftm.fp.App;
 import ch.hftm.fp.location.model.Locality;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class LocalityController implements Initializable {
 
@@ -28,8 +33,8 @@ public class LocalityController implements Initializable {
 
     @FXML
     void clearNewLocationPLZ(ActionEvent event) {
-        plzTxt.setText("");
-        locationTxt.setText("");
+        plzTxt.setText(null);
+        locationTxt.setText(null);
     }
 
     @FXML
@@ -45,6 +50,28 @@ public class LocalityController implements Initializable {
         
         new LocalityService().saveLocality(locality);
 
+    }
+
+
+    
+
+    public void showLocality( ActionEvent actionEvent )
+    {
+        try
+        {
+            Stage stage = new Stage();
+            stage.setTitle("Adressen");
+
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("view/Ortschaften.fxml"));
+            Scene scene = new Scene(loader.load(), 1100, 600);
+
+            stage.setScene( scene );
+            stage.show();
+        }
+        catch ( IOException e )
+        {
+            e.printStackTrace();
+        }
     }
 
 

@@ -100,7 +100,7 @@ public class PersonController implements Initializable
             stage.setTitle("Adressen");
 
             FXMLLoader loader = new FXMLLoader(App.class.getResource("view/Adressen.fxml"));
-            Scene scene = new Scene(loader.load(), 800, 500);
+            Scene scene = new Scene(loader.load(), 1100, 600);
 
             stage.setScene( scene );
             stage.show();
