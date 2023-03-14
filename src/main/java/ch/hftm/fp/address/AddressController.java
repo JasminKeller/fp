@@ -2,26 +2,48 @@ package ch.hftm.fp.address;
 
 import ch.hftm.fp.App;
 import ch.hftm.fp.address.model.Address;
+import ch.hftm.fp.location.LocalityController;
+import ch.hftm.fp.location.model.Locality;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class AddressController implements Initializable {
     @FXML
     TextField addressTxt;
 
+    @FXML
+    private ComboBox<String> locationPLZDropdown;
+
+    // Import the departmentList from the Controller class
+    private ObservableList<Locality> localityList = LocalityController.getlocationPLZList();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        // set locationPLZDropdown with existing locationPLZ of class Locality
+        locationPLZDropdown.setItems(getlocationPLZ());
     }
+
+    // Method to return an ObservableList of locationPLZ names
+    public ObservableList<String> getlocationPLZ() {
+        return localityList.stream()
+                .map(Locality::getPLZLocationName)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+    }
+
 
     public void saveAddress(ActionEvent event)
     {

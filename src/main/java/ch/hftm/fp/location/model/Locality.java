@@ -9,5 +9,9 @@ public class Locality {
     private String uuid;
     private String plz;
     private String location;
+
+    public String getPLZLocationName(){
+        return plz + " / " + location;
+    }
     
 }
