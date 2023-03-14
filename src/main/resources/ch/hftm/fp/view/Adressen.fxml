@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hftm.fp.address.AddressController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="480.0" prefWidth="764.0" VBox.vgrow="ALWAYS">
          <children>
@@ -38,8 +38,8 @@
                   </GridPane>
                </children>
             </VBox>
-            <Button layoutX="468.0" layoutY="196.0" mnemonicParsing="false" onAction="#saveAdress" text=" Speichern " />
-            <Button layoutX="571.0" layoutY="51.0" mnemonicParsing="false" onAction="#createNewAdress" text=" Neu " />
+            <Button layoutX="468.0" layoutY="196.0" mnemonicParsing="false" onAction="#saveAddress" text=" Speichern " />
+            <Button layoutX="571.0" layoutY="51.0" mnemonicParsing="false" onAction="#createNewAddress" text=" Neu " />
             <Label layoutX="32.0" layoutY="33.0" text="Adress verwaltung">
                <font>
                   <Font name="System Bold" size="21.0" />
