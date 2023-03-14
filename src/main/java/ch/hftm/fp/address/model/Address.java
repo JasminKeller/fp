@@ -16,7 +16,7 @@ public class Address
 {
     private String uuid;
     private String street;
-    private List<Locality> localities;
+    private Locality locality;
 }
 
 
