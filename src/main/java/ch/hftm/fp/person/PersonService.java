@@ -67,7 +67,7 @@ public class PersonService
 
             person.setUuid( uuid.toString() );
 
-            mapper.writeValue( new File( "data/person" + uuid + " .json" ), person );
+            mapper.writeValue( new File( "data/person" + uuid + ".json" ), person );
         }
         catch (IOException e)
         {
