@@ -7,14 +7,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PersonTableData
+public class PersonTableData extends Person
 {
-    private StringProperty firstname;
-    private StringProperty lastname;
+    private StringProperty firstnameProperty;
+    private StringProperty lastnameProperty;
 
     public PersonTableData( Person person )
     {
-        this.firstname = new SimpleStringProperty( person.getFirstname() );
-        this.lastname = new SimpleStringProperty( person.getLastname() );
+        this.firstnameProperty = new SimpleStringProperty( person.getFirstname() );
+        this.lastnameProperty = new SimpleStringProperty( person.getLastname() );
     }
 }

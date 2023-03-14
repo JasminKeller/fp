@@ -2,6 +2,9 @@ package ch.hftm.fp.address;
 
 import ch.hftm.fp.App;
 import ch.hftm.fp.address.model.Address;
+import ch.hftm.fp.address.model.AddressTableData;
+import ch.hftm.fp.person.model.Person;
+import javafx.collections.FXCollections;
 import ch.hftm.fp.location.LocalityController;
 import ch.hftm.fp.location.LocalityService;
 import ch.hftm.fp.location.model.Locality;
@@ -15,15 +18,26 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class AddressController implements Initializable {
     @FXML
     TextField addressTxt;
+
+    @FXML
+    TableView<AddressTableData> tableAddresses;
+
+    @FXML
+    TableColumn<AddressTableData, String> colStreet;
+
+    private Person person;
 
     @FXML
     private ComboBox<String> locationPLZDropdown;
@@ -39,12 +53,28 @@ public class AddressController implements Initializable {
         locationPLZDropdown.setItems(getlocationPLZ());
 
         if (localityList != null) {
-            // mach nichts :) 
+            // mach nichts :)
         } else {
             locationPLZDropdown.setItems(FXCollections.observableArrayList());
         }
 
+        Stage stage = App.getAddressStage();
+
+        person = (Person) stage.getUserData();
+
+        showAddresses();
     }
+
+    private void showAddresses() {
+        colStreet.setCellValueFactory( cellValue -> cellValue.getValue().getStreet() );
+
+        List<AddressTableData> addresses = new AddressService().getAddresses().stream()
+                .map( address -> new AddressTableData( address, null ) )
+                .toList();
+
+        tableAddresses.setItems( FXCollections.observableList( addresses ) );
+    }
+
 
     // Method to return an ObservableList of locationPLZ names
 
@@ -65,10 +95,14 @@ public class AddressController implements Initializable {
                 .build();
 
         new AddressService().saveAddress( address );
+
+        clearAdressTextFields( null );
+        showAddresses();
     }
 
     public void clearAdressTextFields( ActionEvent event )
     {
+        addressTxt.setText( null );
         addressTxt.setText(null);
     }
 

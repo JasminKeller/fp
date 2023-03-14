@@ -13,7 +13,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -52,8 +51,8 @@ public class PersonController implements Initializable
     private void showPersons() {
         List<Person> persons = new PersonService().getPersons();
 
-        colFirstname.setCellValueFactory( cellValue -> cellValue.getValue().getFirstname() );
-        colLastname.setCellValueFactory( cellValue -> cellValue.getValue().getLastname() );
+        colFirstname.setCellValueFactory( cellValue -> cellValue.getValue().getFirstnameProperty() );
+        colLastname.setCellValueFactory( cellValue -> cellValue.getValue().getLastnameProperty() );
 
         personTable.setItems(FXCollections.observableList( persons.stream()
                 .map( PersonTableData::new )
@@ -93,8 +92,9 @@ public class PersonController implements Initializable
     {
         try
         {
-            Stage stage = new Stage();
+            Stage stage = App.getAddressStage();
             stage.setTitle("Adressen");
+            stage.setUserData( personTable.getSelectionModel().getSelectedItem() );
 
             FXMLLoader loader = new FXMLLoader(App.class.getResource("view/Adressen.fxml"));
             Scene scene = new Scene(loader.load(), 1100, 600);

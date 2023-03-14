@@ -17,7 +17,7 @@ public class PersonService
     {
         List<Person> persons = new ArrayList<>();
 
-        File dir = new File("data/");
+        File dir = new File("data/persons/");
 
         if( dir.isDirectory() && dir.listFiles() != null )
         {
@@ -37,7 +37,7 @@ public class PersonService
 
     public Person getPerson( String uuid )
     {
-        File file = new File("data/person" + uuid + ".json");
+        File file = new File("data/persons/person" + uuid + ".json");
 
         return readPerson(file);
     }
@@ -67,7 +67,7 @@ public class PersonService
 
             person.setUuid( uuid.toString() );
 
-            mapper.writeValue( new File( "data/person" + uuid + ".json" ), person );
+            mapper.writeValue( new File( "data/persons/person" + uuid + ".json" ), person );
         }
         catch (IOException e)
         {
@@ -77,7 +77,7 @@ public class PersonService
 
     public boolean deletePerson( String uuid )
     {
-        File personFile = new File( "data/person" + uuid + ".json" );
+        File personFile = new File( "data/persons/person" + uuid + ".json" );
 
         if( personFile.exists() )
         {

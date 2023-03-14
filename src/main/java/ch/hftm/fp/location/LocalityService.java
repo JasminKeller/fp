@@ -19,7 +19,7 @@ public class LocalityService {
     {
         List<Locality> localities = new ArrayList<>();
 
-        File dir = new File("data/");
+        File dir = new File("data/localities/");
 
         if( dir.isDirectory() && dir.listFiles() != null )
         {
@@ -40,7 +40,7 @@ public class LocalityService {
 
     public Locality getLocality( String uuid )
     {
-        File file = new File("data/locality" + uuid + ".json");
+        File file = new File("data/localities/locality" + uuid + ".json");
 
         return readLocality(file);
     }
@@ -71,7 +71,7 @@ public class LocalityService {
 
             locality.setUuid( uuid.toString() );
 
-            mapper.writeValue( new File( "data/locality" + uuid + " .json" ), locality );
+            mapper.writeValue( new File( "data/localities/locality" + uuid + " .json" ), locality );
         }
         catch (IOException e)
         {
@@ -81,7 +81,7 @@ public class LocalityService {
 
     public boolean deleteLocality( String uuid )
     {
-        File localityFile = new File( "data/locality" + uuid + ".json" );
+        File localityFile = new File( "data/localities/locality" + uuid + ".json" );
 
         if( localityFile.exists() )
         {

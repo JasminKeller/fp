@@ -16,7 +16,7 @@ public class AddressService {
     {
         List<Address> addresses = new ArrayList<>();
 
-        File dir = new File("data/");
+        File dir = new File("data/addresses");
 
         if( dir.isDirectory() && dir.listFiles() != null )
         {
@@ -36,7 +36,7 @@ public class AddressService {
 
     public Address getAddress( String uuid )
     {
-        File file = new File("data/address" + uuid + ".json");
+        File file = new File("data/addresses/address" + uuid + ".json");
 
         return readAddress(file);
     }
@@ -66,7 +66,7 @@ public class AddressService {
 
             address.setUuid( uuid.toString() );
 
-            mapper.writeValue( new File( "data/address" + uuid + ".json" ), address );
+            mapper.writeValue( new File( "data/addresses/address" + uuid + ".json" ), address );
         }
         catch (IOException e)
         {
@@ -76,7 +76,7 @@ public class AddressService {
 
     public boolean deleteAddress(String uuid)
     {
-        File addressFile = new File( "data/address" + uuid + ".json" );
+        File addressFile = new File( "data/addresses/address" + uuid + ".json" );
 
         if( addressFile.exists() )
         {
