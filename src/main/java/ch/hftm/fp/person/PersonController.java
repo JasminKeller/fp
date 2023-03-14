@@ -89,7 +89,6 @@ public class PersonController implements Initializable
         inputFirstname.setText( null );
         inputLastname.setText( null );
         inputDateOfBirth.setValue( null );
-        inputHometown.setText( null );
     }
 
     
