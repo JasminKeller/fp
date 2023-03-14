@@ -6,6 +6,7 @@ import lombok.Data;
 @Builder
 public class Locality {
     
+    private String uuid;
     private String plz;
     private String location;
     
