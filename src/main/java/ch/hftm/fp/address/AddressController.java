@@ -36,21 +36,17 @@ public class AddressController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         // set locationPLZDropdown with existing locationPLZ of class Locality
-        locationPLZDropdown.setItems(getlocationPLZ());
-
-        if (localityList != null) {
-            // mach nichts :) 
-        } else {
-            locationPLZDropdown.setItems(FXCollections.observableArrayList());
+        locationPLZDropdown.setItems(locationPLZList);
+        if (!localityList.isEmpty()) {
+            locationPLZDropdown.getSelectionModel().selectFirst();
         }
 
     }
 
     // Method to return an ObservableList of locationPLZ names
-
     public ObservableList<String> getlocationPLZ() {
         return localityList.stream()
-                .map(Locality::getPlz)
+                .map(locality -> locality.getPlz() + " " + locality.getLocation())
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
     }
 
