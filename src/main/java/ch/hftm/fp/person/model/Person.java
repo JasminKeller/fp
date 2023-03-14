@@ -20,7 +20,6 @@ public class Person
     private String firstname;
     private String lastname;
     private Date birthdate;
-    private String hometown;
     private Address mainAddress;
     private List<Address> addresses;
 }

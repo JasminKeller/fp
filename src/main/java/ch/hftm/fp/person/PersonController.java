@@ -1,17 +1,22 @@
 package ch.hftm.fp.person;
 
+import ch.hftm.fp.App;
 import ch.hftm.fp.person.model.Person;
 import ch.hftm.fp.person.model.PersonTableData;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -29,9 +34,6 @@ public class PersonController implements Initializable
 
     @FXML
     DatePicker inputDateOfBirth;
-
-    @FXML
-    TextField inputHometown;
 
     @FXML
     TableColumn<PersonTableData, String> colFirstname;
@@ -63,7 +65,6 @@ public class PersonController implements Initializable
         var firstname = inputFirstname.getText();
         var lastname = inputLastname.getText();
         var dateOfBirth = inputDateOfBirth.getValue();
-        var hometown = inputHometown.getText();
 
         Instant instant = Instant.from(dateOfBirth.atStartOfDay(ZoneId.systemDefault()));
 
@@ -71,7 +72,6 @@ public class PersonController implements Initializable
                 .firstname( firstname )
                 .lastname( lastname )
                 .birthdate( Date.from(instant) )
-                .hometown( hometown )
                 .build();
 
         new PersonService().savePerson( person );
@@ -79,7 +79,6 @@ public class PersonController implements Initializable
         inputFirstname.setText( null );
         inputLastname.setText( null );
         inputDateOfBirth.setValue( null );
-        inputHometown.setText( null );
 
         showPersons();
     }
@@ -92,4 +91,23 @@ public class PersonController implements Initializable
     }
 
     
+
+    public void showAddresses( ActionEvent actionEvent )
+    {
+        try
+        {
+            Stage stage = new Stage();
+            stage.setTitle("Adressen");
+
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("view/Adressen.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 500);
+
+            stage.setScene( scene );
+            stage.show();
+        }
+        catch ( IOException e )
+        {
+            e.printStackTrace();
+        }
+    }
 }
