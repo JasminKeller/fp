@@ -23,19 +23,11 @@ public class PersonService
         {
             for( File file : dir.listFiles() )
             {
-                try
-                {
-                    if ( file.isFile() )
-                    {
-                        String personJson = Files.readString( Path.of( file.getPath() ) );
-                        Person personData = new ObjectMapper().readValue( personJson, Person.class );
+                Person person = readPerson( file );
 
-                        persons.add( personData );
-                    }
-                }
-                catch ( IOException e )
+                if( person != null )
                 {
-                    e.printStackTrace();
+                    persons.add(person);
                 }
             }
         }
@@ -45,8 +37,25 @@ public class PersonService
 
     public Person getPerson( String uuid )
     {
+        File file = new File("data/person" + uuid + ".json");
 
-        return null;
+        return readPerson(file);
+    }
+
+    private Person readPerson(File file)
+    {
+        Person person = null;
+
+        if( file.isFile() ) {
+            try {
+                String personJson = Files.readString(Path.of(file.getPath()));
+                person = new ObjectMapper().readValue(personJson, Person.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return person;
     }
 
     public void savePerson( Person person )
@@ -66,8 +75,15 @@ public class PersonService
         }
     }
 
-    public boolean deletePerson()
+    public boolean deletePerson( String uuid )
     {
+        File personFile = new File( "data/person" + uuid + ".json" );
+
+        if( personFile.exists() )
+        {
+            return personFile.delete();
+        }
+
         return false;
     }
 }
