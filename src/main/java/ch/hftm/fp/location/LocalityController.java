@@ -1,12 +1,17 @@
 package ch.hftm.fp.location;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import ch.hftm.fp.location.model.Locality;
+import ch.hftm.fp.location.model.LocalityTableData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
@@ -29,9 +34,29 @@ public class LocalityController implements Initializable {
         return localityList;
     }
 
+    @FXML
+    TableColumn<LocalityTableData, String> colPLZ;
+
+    @FXML
+    TableColumn<LocalityTableData, String> colLocation;
+
+    @FXML
+    TableView<LocalityTableData> localityTable;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+        showLocalitys();
+    }
+
+    private void showLocalitys() {
+        List<Locality> persons = new LocalityService().getLocalities();
+
+        colPLZ.setCellValueFactory( cellValue -> cellValue.getValue().getPlz() );
+        colLocation.setCellValueFactory( cellValue -> cellValue.getValue().getLocation() );
+
+        localityTable.setItems(FXCollections.observableList( persons.stream()
+                .map( LocalityTableData::new )
+                .toList() ));
     }
 
     @FXML
