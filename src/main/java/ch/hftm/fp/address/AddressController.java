@@ -2,7 +2,6 @@ package ch.hftm.fp.address;
 
 import ch.hftm.fp.App;
 import ch.hftm.fp.address.model.Address;
-import ch.hftm.fp.location.LocalityController;
 import ch.hftm.fp.location.LocalityService;
 import ch.hftm.fp.location.model.Locality;
 import javafx.collections.FXCollections;
@@ -34,14 +33,18 @@ public class AddressController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadLocationPLZDropdown();
+    }
 
+
+    public void loadLocationPLZDropdown(){
         // set locationPLZDropdown with existing locationPLZ of class Locality
-        locationPLZDropdown.setItems(locationPLZList);
+        locationPLZDropdown.setItems(getlocationPLZ());
         if (!localityList.isEmpty()) {
             locationPLZDropdown.getSelectionModel().selectFirst();
         }
-
     }
+
 
     // Method to return an ObservableList of locationPLZ names
     public ObservableList<String> getlocationPLZ() {
