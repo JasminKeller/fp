@@ -32,7 +32,7 @@
                      <children>
                         <Label text="Strasse / Nr." />
                         <Label text="Ort / PLZ" GridPane.rowIndex="1" />
-                        <TextField fx:id="adressTxt" GridPane.columnIndex="1" />
+                        <TextField fx:id="addressTxt" GridPane.columnIndex="1" />
                         <ComboBox fx:id="locationPLZDropdown" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Button mnemonicParsing="false" onAction="#showLocality" text="Ortschaft bearbeiten" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>

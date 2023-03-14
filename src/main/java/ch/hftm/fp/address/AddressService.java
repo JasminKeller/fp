@@ -66,7 +66,7 @@ public class AddressService {
 
             address.setUuid( uuid.toString() );
 
-            mapper.writeValue( new File( "data/address" + uuid + " .json" ), address );
+            mapper.writeValue( new File( "data/address" + uuid + ".json" ), address );
         }
         catch (IOException e)
         {
