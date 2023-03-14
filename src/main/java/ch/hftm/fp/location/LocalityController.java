@@ -21,15 +21,15 @@ public class LocalityController implements Initializable {
     @FXML
     private ListView<?> locationPLZListView;
 
-
-    @FXML
-    void createNewLocationPLZ(ActionEvent event) {
-
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        
+    }
 
+    @FXML
+    void clearNewLocationPLZ(ActionEvent event) {
+        plzTxt.setText("");
+        locationTxt.setText("");
     }
 
     @FXML

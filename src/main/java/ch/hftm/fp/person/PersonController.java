@@ -83,6 +83,15 @@ public class PersonController implements Initializable
         showPersons();
     }
 
+
+    public void clearPersonTextFields(ActionEvent actionEvent) {
+        inputFirstname.setText( null );
+        inputLastname.setText( null );
+        inputDateOfBirth.setValue( null );
+    }
+
+    
+
     public void showAddresses( ActionEvent actionEvent )
     {
         try
