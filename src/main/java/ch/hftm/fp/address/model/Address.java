@@ -1,5 +1,5 @@
 package ch.hftm.fp.address.model;
-import ch.hftm.fp.locality.model.Locality;
+import ch.hftm.fp.location.model.Locality;
 
 import lombok.Builder;
 import lombok.Data;
