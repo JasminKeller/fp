@@ -76,15 +76,12 @@ public class PersonController implements Initializable
 
         new PersonService().savePerson( person );
 
-        inputFirstname.setText( null );
-        inputLastname.setText( null );
-        inputDateOfBirth.setValue( null );
+        clearPersonTextFields();
 
         showPersons();
     }
 
-
-    public void clearPersonTextFields(ActionEvent actionEvent) {
+    public void clearPersonTextFields() {
         inputFirstname.setText( null );
         inputLastname.setText( null );
         inputDateOfBirth.setValue( null );

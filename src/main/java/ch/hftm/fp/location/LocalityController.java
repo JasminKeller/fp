@@ -49,18 +49,18 @@ public class LocalityController implements Initializable {
     }
 
     private void showLocalitys() {
-        List<Locality> persons = new LocalityService().getLocalities();
+        List<Locality> localities = new LocalityService().getLocalities();
 
         colPLZ.setCellValueFactory( cellValue -> cellValue.getValue().getPlz() );
         colLocation.setCellValueFactory( cellValue -> cellValue.getValue().getLocation() );
 
-        localityTable.setItems(FXCollections.observableList( persons.stream()
+        localityTable.setItems(FXCollections.observableList( localities.stream()
                 .map( LocalityTableData::new )
                 .toList() ));
     }
 
     @FXML
-    void clearNewLocationPLZ(ActionEvent event) {
+    void clearNewLocationPLZ() {
         plzTxt.setText(null);
         locationTxt.setText(null);
     }
@@ -77,6 +77,10 @@ public class LocalityController implements Initializable {
             .build();
         
         new LocalityService().saveLocality(locality);
+
+        clearNewLocationPLZ();
+
+        showLocalitys();
 
     }
 
