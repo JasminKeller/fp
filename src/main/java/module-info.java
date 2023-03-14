@@ -10,4 +10,6 @@ module fp
 
     opens ch.hftm.fp to javafx.fxml;
     exports ch.hftm.fp;
+    opens ch.hftm.fp.person to javafx.fxml;
+    exports ch.hftm.fp.person.model;
 }
