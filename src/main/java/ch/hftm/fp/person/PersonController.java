@@ -36,9 +36,6 @@ public class PersonController implements Initializable
     DatePicker inputDateOfBirth;
 
     @FXML
-    TextField inputHometown;
-
-    @FXML
     TableColumn<PersonTableData, String> colFirstname;
 
     @FXML
@@ -68,7 +65,6 @@ public class PersonController implements Initializable
         var firstname = inputFirstname.getText();
         var lastname = inputLastname.getText();
         var dateOfBirth = inputDateOfBirth.getValue();
-        var hometown = inputHometown.getText();
 
         Instant instant = Instant.from(dateOfBirth.atStartOfDay(ZoneId.systemDefault()));
 
@@ -76,7 +72,6 @@ public class PersonController implements Initializable
                 .firstname( firstname )
                 .lastname( lastname )
                 .birthdate( Date.from(instant) )
-                .hometown( hometown )
                 .build();
 
         new PersonService().savePerson( person );
@@ -84,7 +79,6 @@ public class PersonController implements Initializable
         inputFirstname.setText( null );
         inputLastname.setText( null );
         inputDateOfBirth.setValue( null );
-        inputHometown.setText( null );
 
         showPersons();
     }
