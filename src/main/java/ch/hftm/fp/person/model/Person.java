@@ -1,12 +1,14 @@
 package ch.hftm.fp.person.model;
 
 import ch.hftm.fp.address.model.Address;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
 
 @Data
+@Builder
 public class Person
 {
     private String uuid;
