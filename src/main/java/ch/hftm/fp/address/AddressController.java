@@ -29,7 +29,6 @@ public class AddressController implements Initializable {
     private ComboBox<String> locationPLZDropdown;
 
     // Import the localityList from the LocalityController class
-    // private ObservableList<Locality> localityList = LocalityController.getlocationPLZList();
     private LocalityService localityService = new LocalityService();
     private ObservableList<Locality> localityList = FXCollections.observableList(localityService.getLocalities());
 
@@ -51,7 +50,7 @@ public class AddressController implements Initializable {
 
     public ObservableList<String> getlocationPLZ() {
         return localityList.stream()
-                .map(Locality::getPLZLocationName)
+                .map(Locality::getPlz)
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
     }
 
