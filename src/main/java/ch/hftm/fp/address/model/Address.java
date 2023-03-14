@@ -1,6 +1,6 @@
 package ch.hftm.fp.address.model;
-
 import ch.hftm.fp.location.model.Locality;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
