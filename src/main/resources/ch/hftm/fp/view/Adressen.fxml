@@ -40,7 +40,7 @@
                </children>
             </VBox>
             <Button layoutX="468.0" layoutY="196.0" mnemonicParsing="false" onAction="#saveAddress" text=" Speichern " />
-            <Button layoutX="571.0" layoutY="51.0" mnemonicParsing="false" onAction="#createNewAddress" text=" Neu " />
+            <Button layoutX="571.0" layoutY="51.0" mnemonicParsing="false" onAction="#clearAdressTextFields" text=" Neu " />
             <Label layoutX="32.0" layoutY="33.0" text="Adress verwaltung">
                <font>
                   <Font name="System Bold" size="21.0" />

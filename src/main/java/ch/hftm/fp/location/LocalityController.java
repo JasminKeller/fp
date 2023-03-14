@@ -53,26 +53,5 @@ public class LocalityController implements Initializable {
     }
 
 
-    
-
-    public void showLocality( ActionEvent actionEvent )
-    {
-        try
-        {
-            Stage stage = new Stage();
-            stage.setTitle("Adressen");
-
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("view/Ortschaften.fxml"));
-            Scene scene = new Scene(loader.load(), 1100, 600);
-
-            stage.setScene( scene );
-            stage.show();
-        }
-        catch ( IOException e )
-        {
-            e.printStackTrace();
-        }
-    }
-
 
 }

@@ -35,9 +35,9 @@ public class AddressController implements Initializable {
         new AddressService().saveAddress( address );
     }
 
-    public void createNewAddress( ActionEvent event )
+    public void clearAdressTextFields( ActionEvent event )
     {
-
+        addressTxt.setText(null);
     }
 
     public void showLocality( ActionEvent actionEvent )
