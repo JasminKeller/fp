@@ -48,15 +48,22 @@ public class AddressController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadLocationPLZDropdown();
+    }
 
+
+    public void loadLocationPLZDropdown(){
         // set locationPLZDropdown with existing locationPLZ of class Locality
         locationPLZDropdown.setItems(getlocationPLZ());
+        if (!localityList.isEmpty()) {
+            locationPLZDropdown.getSelectionModel().selectFirst();
 
         if (localityList != null) {
             // mach nichts :)
         } else {
             locationPLZDropdown.setItems(FXCollections.observableArrayList());
         }
+    }
 
         Stage stage = App.getAddressStage();
 
@@ -77,10 +84,9 @@ public class AddressController implements Initializable {
 
 
     // Method to return an ObservableList of locationPLZ names
-
     public ObservableList<String> getlocationPLZ() {
         return localityList.stream()
-                .map(Locality::getPlz)
+                .map(locality -> locality.getPlz() + " " + locality.getLocation())
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
     }
 

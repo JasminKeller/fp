@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
+import ch.hftm.fp.address.AddressController;
 
 
 public class LocalityController implements Initializable {
