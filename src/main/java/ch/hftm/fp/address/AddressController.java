@@ -3,6 +3,7 @@ package ch.hftm.fp.address;
 import ch.hftm.fp.App;
 import ch.hftm.fp.address.model.Address;
 import ch.hftm.fp.location.LocalityController;
+import ch.hftm.fp.location.LocalityService;
 import ch.hftm.fp.location.model.Locality;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,17 +28,27 @@ public class AddressController implements Initializable {
     @FXML
     private ComboBox<String> locationPLZDropdown;
 
-    // Import the departmentList from the Controller class
-    private ObservableList<Locality> localityList = LocalityController.getlocationPLZList();
+    // Import the localityList from the LocalityController class
+    // private ObservableList<Locality> localityList = LocalityController.getlocationPLZList();
+    private LocalityService localityService = new LocalityService();
+    private ObservableList<Locality> localityList = FXCollections.observableList(localityService.getLocalities());
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         // set locationPLZDropdown with existing locationPLZ of class Locality
         locationPLZDropdown.setItems(getlocationPLZ());
+
+        if (localityList != null) {
+            // mach nichts :) 
+        } else {
+            locationPLZDropdown.setItems(FXCollections.observableArrayList());
+        }
+
     }
 
     // Method to return an ObservableList of locationPLZ names
+
     public ObservableList<String> getlocationPLZ() {
         return localityList.stream()
                 .map(Locality::getPLZLocationName)
@@ -67,7 +78,7 @@ public class AddressController implements Initializable {
         try
         {
             Stage stage = new Stage();
-            stage.setTitle("Adressen");
+            stage.setTitle("Ortschaften");
 
             FXMLLoader loader = new FXMLLoader(App.class.getResource("view/Ortschaften.fxml"));
             Scene scene = new Scene(loader.load(), 1100, 600);

@@ -13,5 +13,7 @@ public class Locality {
     public String getPLZLocationName(){
         return plz + " / " + location;
     }
+
+
     
 }
